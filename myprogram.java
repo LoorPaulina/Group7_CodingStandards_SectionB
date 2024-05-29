@@ -2,11 +2,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class menu {
-    Map<String, Double> items;
+class Menu {
+    Map<String, Double> items= new HashMap<>();
 
-    menu() {
-        items = new HashMap<>();
+    Menu() {
+        
         items.put("Burger", 10.0);
         items.put("Pizza", 15.0);
         items.put("Salad", 8.0);
@@ -35,6 +35,14 @@ class Order {
 
     Map<String, Integer> var45s= new HashMap<>();
 
+    boolean quantityValidation(int quantity){
+        if(quantity>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 
     void add(String var45, int quantity) {
@@ -55,39 +63,42 @@ class Order {
     }
 }
 
-class sumThe_Total {
+class Total {
     double baseCost = 5;
 
-    double calc(Order order, menu menu) {
+    double calc(Order order, Menu menu) {
         //my function to calculate the total cost
-        double totalC_ = baseCost;
+        double totalCost = baseCost;
         int var2 = 0;
 
         for (Map.Entry<String, Integer> item : order.getvar45s().entrySet()) {
-            totalC_ += menu.getPrice(item.getKey()) * item.getValue();
+            totalCost += menu.getPrice(item.getKey()) * item.getValue();
             var2 += item.getValue();
         }
 
         double discount = 0;
         if (var2 > 5) {
             discount = 0.1;
-        } else if (var2 > 10) {
+        } else if (var2 > 10 & var2<20) {
             discount = 0.2;
+        //TODO: Add more discounts based on total cost in requirements
+        }else if (var2 > 20) {
+            discount = 0.3;
         }
 
-        totalC_ = totalC_ - (totalC_ * discount);
+        totalCost = totalCost - (totalCost * discount);
 
-        //TODO: Add more discounts based on total cost in requirements
+       
 
-        return totalC_;
+        return totalCost;
     }
 }
 
-public class myprogram {
+class MyProgram{
     public static void main(String[] args) {
-        menu menu = new menu();
+        Menu menu = new Menu();
         Order order = new Order();
-        sumThe_Total calculator = new sumThe_Total();
+        Total calculator = new Total();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -95,8 +106,6 @@ public class myprogram {
 
             System.out.print("Enter meal name to order or 'done' to finish: ");
             String var45 = scanner.nextLine();
-            //System.out.println("here i am in main method");
-            //this will allow the user to exit the loop
             if (var45.equals("done")) break;
 
             if (!menu.aval(var45)) {
@@ -106,11 +115,13 @@ public class myprogram {
 
             System.out.print("Enter quantity for " + var45 + ": ");
             int quantity = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
 
             if (quantity <= 0) {
                 System.out.println("Invalid quantity. Please re-enter.");
-                continue;
+                System.out.print("Enter quantity for " + var45 + ": ");
+                quantity = scanner.nextInt();
+                scanner.nextLine(); 
             }
 
             order.add(var45, quantity);
