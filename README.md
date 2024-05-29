@@ -9,6 +9,8 @@
 * Error 5: Paulina Loor
 * Error 6: Richard Perez
 * Error 7: Katherine Tumbaco
-* Error 8: Paulina Loor
+* Error 8: Katherine Tumbaco
+* Error 9: Richard Perez
+* Error 10: Paulina Loor
 
   
