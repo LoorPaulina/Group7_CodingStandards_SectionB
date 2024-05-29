@@ -1,11 +1,9 @@
-
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 class menu {
-    Map<any, int> items;
+    Map<String, Double> items;
 
     menu() {
         items = new HashMap<>();
@@ -34,19 +32,17 @@ class menu {
 }
 
 class Order {
-    Map<String, Integer> var45s;
 
-    Order() {
-        //this will create a new order
-        var45s = new HashMap<>();
-    }
+    Map<String, Integer> var45s= new HashMap<>();
+
+    
 
     void add(String var45, int quantity) {
         //this will add the meal and quantity to the order
         var45s.put(var45, quantity);
     }
 
-    HashMap<String, Integer> getvar45s() {
+    Map<String, Integer> getvar45s() {
         return var45s;
     }
 
@@ -62,7 +58,7 @@ class Order {
 class sumThe_Total {
     double baseCost = 5;
 
-    double calc(Ord order, menu menu) {
+    double calc(Order order, menu menu) {
         //my function to calculate the total cost
         double totalC_ = baseCost;
         int var2 = 0;
@@ -90,7 +86,7 @@ class sumThe_Total {
 public class myprogram {
     public static void main(String[] args) {
         menu menu = new menu();
-        Ord order = new Ord();
+        Order order = new Order();
         sumThe_Total calculator = new sumThe_Total();
         Scanner scanner = new Scanner(System.in);
 
@@ -137,10 +133,9 @@ public class myprogram {
         System.out.print("Confirm order (yes/no): ");
         String confirm = scanner.nextLine();
 
-        if (!confirm.equals("yes") or !confirm.equals("YES")) {
+        if (!confirm.equals("yes") || !confirm.equals("YES")) {
             System.out.println("Order canceled.");
             System.out.println(-1);
-            return;
         }
 
         System.out.println("Order confirmed. Total cost is: $" + totalC_);
